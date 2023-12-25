@@ -32,6 +32,16 @@ const Home = () => {
     return str.slice(0, maxLength) + '...';
   };
 
+  const filterHtmlTags = (htmlString) => {
+    
+const allowedTags = ['p', 'a', 'br', 'em', 'strong','h1','h2','h3','h4','h5','h6']; 
+    const regex = new RegExp(`<\\/?(${allowedTags.join('|')})(\\s[^>]*?>|>)`, 'gi');
+
+return htmlString.replace(regex, '');
+  };
+
+  
+
   
   return (
     <div className='posts_con'>
@@ -44,7 +54,8 @@ const Home = () => {
             {truncateString(note.title,80).slice(1)}</h2></Link>
 
                {/* Display only 100 characters of the content*/}
-             <p>{truncateString(note.content,100)}</p>
+
+               <p dangerouslySetInnerHTML={{ __html: filterHtmlTags(truncateString(note.content, 100)) }}></p>
 
               <small>{formatDate(note.created_at)}</small>
           </div>

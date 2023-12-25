@@ -60,7 +60,8 @@ const shareUrl = `http://www.localhost:5173/note?id=${id}`
         <div className="note_flex">
             <h2>{title}</h2> 
             <div className="image_box"></div>
-            <p>{content}</p>
+            {/* <p>{content}</p> */}
+            <div dangerouslySetInnerHTML={{ __html: content }}></div>
             <p>{formatDate(createdDate)}</p>
             <p>{formatDate(updatedDate)}</p>
             <div className="action_btns">
