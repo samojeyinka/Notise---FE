@@ -1,4 +1,5 @@
 import {React, useEffect,useState} from 'react'
+import { Navigate, useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import formatDate from '../utils/Date';
 
@@ -10,6 +11,7 @@ const [image, setImage] = useState([]);
 const [createdDate, setCreatedDate] = useState('');
 const [updatedDate, setUpdatedDate] = useState('');
 
+const navigate = useNavigate();
 
 
 const params = new URLSearchParams(window.location.search);
@@ -31,9 +33,22 @@ const getNote = async() =>{
     }
 }
 
+const handleDelete = async(id) => {
+try {
+  await axios.delete(`http://localhost:3000/api/v1/posts/${id}`);
+ navigate('/')
+  console.log(`deleted ${id}`);
+
+} catch (error) {
+  console.error("Unable to delete", error)
+}
+}
+
 useEffect(() =>{
 getNote()
 },[])
+
+
 
 
   return (
@@ -44,6 +59,11 @@ getNote()
             <p>{content}</p>
             <p>{formatDate(createdDate)}</p>
             <p>{formatDate(updatedDate)}</p>
+            <div className="action_btns">
+              <li onClick={() => handleDelete(id)}>Delete</li>
+              <Link to={`/edit?id=${id}`}><li>Update</li></Link>
+              <li>Share</li>
+            </div>
         </div>
     </div>
   )

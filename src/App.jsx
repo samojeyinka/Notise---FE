@@ -7,6 +7,7 @@ import Header from './pages/Header'
 import Home from './pages/Home'
 import Show from './pages/Show'
 import NewNote from './pages/NewNote'
+import Edit from './pages/Edit'
 
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="note" element={<Show />} />
       <Route path="new" element={<NewNote />} />
+      <Route path="edit" element={<Edit />} />
       <Route path="about" element={<About />} />
     </Route>
   )
