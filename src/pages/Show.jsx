@@ -2,6 +2,10 @@ import {React, useEffect,useState} from 'react'
 import { Navigate, useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import formatDate from '../utils/Date';
+import {
+   FacebookShareButton, FacebookIcon, WhatsappShareButton,WhatsappIcon,
+   TwitterShareButton,TwitterIcon
+ } from 'react-share';
 
 const Show = () => {
 
@@ -49,12 +53,12 @@ getNote()
 },[])
 
 
-
+const shareUrl = `http://www.localhost:5173/note?id=${id}`
 
   return (
     <div className='show'>
         <div className="note_flex">
-            <h2>{title}</h2>
+            <h2>{title}</h2> 
             <div className="image_box"></div>
             <p>{content}</p>
             <p>{formatDate(createdDate)}</p>
@@ -65,6 +69,19 @@ getNote()
               <li>Share</li>
             </div>
         </div>
+
+        <FacebookShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
+          <FacebookIcon size={40}/>
+        </FacebookShareButton>
+
+        
+        <WhatsappShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
+          <WhatsappIcon size={40}/>
+        </WhatsappShareButton>
+
+        <TwitterShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
+          <TwitterIcon size={40}/>
+        </TwitterShareButton>
     </div>
   )
 }
