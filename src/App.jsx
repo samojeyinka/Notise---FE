@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import About from './pages/about'
-import Header from './pages/Header'
 import Home from './pages/Home'
 import Show from './pages/Show'
 import NewNote from './pages/NewNote'
@@ -32,8 +31,8 @@ function App() {
 
   return (
    <>
-   <Header/>
    <div className="app_container">
+
    <RouterProvider router={router}/>
    </div>
       </>

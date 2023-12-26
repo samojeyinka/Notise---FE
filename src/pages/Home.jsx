@@ -2,6 +2,7 @@ import { useEffect,useState } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import formatDate from '../utils/Date';
+import Header from './Header';
 
 
 const Home = () => {
@@ -57,12 +58,13 @@ return htmlString.replace(regex, '');
 
                <p dangerouslySetInnerHTML={{ __html: filterHtmlTags(truncateString(note.content, 100)) }}></p>
 
-              <small>{formatDate(note.created_at)}</small>
+              <small className='font-italic"'>{formatDate(note.created_at)}</small>
           </div>
         ))
       }
       <h2></h2>
       <p></p>
+      <Header/>
     </div>
   )
 }

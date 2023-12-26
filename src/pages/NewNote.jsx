@@ -38,16 +38,19 @@ const PostForm = () => {
 
 
   return (
+    <div className="new">
     <form onSubmit={handleFormSubmit}>
-      <label>
-        Title:
-        <input type="text" name="title" value={title} onChange={(e) => {setTitle(e.target.value)}} />
-      </label>
+  
+        <input type="text" name="title"
+        placeholder='Plan title...'
+        value={title} onChange={(e) => {setTitle(e.target.value)}} />
      <br/>
      <MyEditor content={content} setDetailsCallback={handleEditorChange} />
      <br/>
-      <button type="submit">Submit</button>
+     <br/>
+      <button type="submit">Add note</button>
     </form>
+    </div>
   );
 };
 

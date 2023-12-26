@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MyEditor from '../utils/MyEditor';
 
 
 
@@ -40,6 +41,12 @@ const Edit = () => {
     }
   }
 
+    // Function to handle changes in the 'details' state (for the editor)
+    const handleEditorChange = (value) => {
+      setNewContent(value);
+    };
+  
+
   useEffect(() => {
     getNote();
   },[])
@@ -48,17 +55,14 @@ const Edit = () => {
 
 
   return (
-    <div>
+    <div className='new'>
         <form onSubmit={handleFormSubmit}>
-      <label>
-        Title:
+
         <input type="text" name="title" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}} />
-      </label>
       <br />
-      <label>
-        Content:
-        <textarea name="content" value={newContent} onChange={(e) => {setNewContent(e.target.value)}} />
-      </label>
+      
+      <MyEditor content={newContent} setDetailsCallback={handleEditorChange} />
+     <br/>
      <br/>
       <button type="submit">Submit</button>
     </form>

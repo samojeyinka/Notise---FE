@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const Header = () => {
   return (
-    <div>Header</div>
+   <nav>
+    <div className="nav-box">
+      <a href='/new'><h1>+</h1></a>
+    </div>
+   </nav>
   )
 }
 

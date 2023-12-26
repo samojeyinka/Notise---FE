@@ -59,30 +59,31 @@ const shareUrl = `http://www.localhost:5173/note?id=${id}`
     <div className='show'>
         <div className="note_flex">
             <h2>{title}</h2> 
-            <div className="image_box"></div>
-            {/* <p>{content}</p> */}
-            <div dangerouslySetInnerHTML={{ __html: content }}></div>
-            <p>{formatDate(createdDate)}</p>
-            <p>{formatDate(updatedDate)}</p>
+            <div className='content' dangerouslySetInnerHTML={{ __html: content }}></div>
+            <p><b>Created:</b> {formatDate(createdDate)}</p>
+            <p><b>Updated:</b> {formatDate(updatedDate)}</p>
             <div className="action_btns">
-              <li onClick={() => handleDelete(id)}>Delete</li>
-              <Link to={`/edit?id=${id}`}><li>Update</li></Link>
-              <li>Share</li>
+              <li className='del-btn' onClick={() => handleDelete(id)}>Delete</li>
+              <Link className='updt-btn' to={`/edit?id=${id}`}><li>Update</li></Link>
             </div>
         </div>
-
-        <FacebookShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
-          <FacebookIcon size={40}/>
+        <div className="share mt-4">
+          <h4>Share:</h4>
+          <div className="share-social">
+          <FacebookShareButton url={shareUrl} quote="Check out this awesome note" title={title} hashtag="#mynote">
+          <FacebookIcon size={35}/>
         </FacebookShareButton>
 
         
-        <WhatsappShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
-          <WhatsappIcon size={40}/>
+        <WhatsappShareButton url={shareUrl} quote="Check out this awesome note" title={title} hashtag="#mynote">
+          <WhatsappIcon size={35}/>
         </WhatsappShareButton>
 
-        <TwitterShareButton url={shareUrl} quote="Check out this awesome content!" title={title} hashtag="#mynote">
-          <TwitterIcon size={40}/>
+        <TwitterShareButton url={shareUrl} quote="Check out this awesome note" title={title} hashtag="#mynote">
+          <TwitterIcon size={35}/>
         </TwitterShareButton>
+          </div>
+        </div>
     </div>
   )
 }

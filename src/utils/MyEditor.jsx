@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-function MyEditor({ details, setDetailsCallback }) {
+function MyEditor({ content, setDetailsCallback }) {
   const [editorValue, setEditorValue] = useState('');
 
   useEffect(() => {
     // Set the editor value when the 'details' prop changes
-    setEditorValue(details);
-  }, [details]);
+    setEditorValue(content);
+  }, [content]);
 
   const handleEditorChange = (value) => {
     setEditorValue(value);
@@ -21,14 +21,14 @@ function MyEditor({ details, setDetailsCallback }) {
 
   return (
     <ReactQuill
-    className='details-input'
+    className='content-input'
     placeholder='What are you planning?'
       value={editorValue}
       onChange={handleEditorChange}
       required
       modules={{
         toolbar: [
-          [{ header: [1, 2, false] }],
+          [{ header: [1, 2,3,,4,5,6, false] }],
           ['bold', 'italic', 'underline'],
           ['code-block', 'link'],
         ],
