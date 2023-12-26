@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import MyEditor from '../utils/MyEditor';
+import Error from '../utils/Error';
 
 
 
@@ -8,7 +9,7 @@ const Edit = () => {
     
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
-
+  const [alertText, setAlertText] = useState('');
      const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     console.log('This note id is:',id);
@@ -37,11 +38,13 @@ const Edit = () => {
     setNewContent(content);
     console.log(content);
     } catch (error) {
-        console.error(error)
+      Error(error, setAlertText);
     }
+    setTimeout(() =>{
+      setAlertText('');
+    },3000);
   }
 
-    // Function to handle changes in the 'details' state (for the editor)
     const handleEditorChange = (value) => {
       setNewContent(value);
     };
@@ -56,6 +59,10 @@ const Edit = () => {
 
   return (
     <div className='new'>
+        <div className={alertText ? 'err-box' : ''}>
+        <p>{alertText}</p>
+      </div>
+
         <form onSubmit={handleFormSubmit}>
 
         <input type="text" name="title" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}} />

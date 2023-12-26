@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import MyEditor from '../utils/MyEditor';
+import Error from '../utils/Error';
 
 const PostForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [alertText, setAlertText] = useState('');
 
   const navigate = useNavigate();
 
@@ -21,12 +23,16 @@ const PostForm = () => {
       console.log(post);
       setTitle('');
       setContent('');
+      setAlertText('Note created successfully');
       navigate('/');
    
     } catch (error) {
-
-      console.log(error);
+      Error(error, setAlertText);
     }
+
+    setTimeout(() =>{
+      setAlertText('');
+    },3000);
 
   }
 
@@ -39,6 +45,10 @@ const PostForm = () => {
 
   return (
     <div className="new">
+      <div className={alertText ? 'err-box' : ''}>
+        <p>{alertText}</p>
+      </div>
+      
     <form onSubmit={handleFormSubmit}>
   
         <input type="text" name="title"

@@ -189,3 +189,18 @@ nav{
 }
 
 
+.err-box{
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 0, 0, 0.407);
+    padding: .3rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.err-box p{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+
+}
+

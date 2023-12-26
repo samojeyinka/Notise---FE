@@ -46,10 +46,15 @@ return htmlString.replace(regex, '');
   
   return (
     <div className='posts_con'>
-      {
+
+      {notes.length < 1  ? (
+      <div>
+        <p className='text-center'>Start your planning today</p>
+      </div>) 
+      :
         notes.map(note=> (
           <div className="note_box" key={note.id}>
-          
+        
           {/* Display only 80 characters of the title and also convert every character to uppercase */}
             <Link to={`note?id=${note.id}`}><h2>{truncateString(note.title,80).charAt(0).toUpperCase()}
             {truncateString(note.title,80).slice(1)}</h2></Link>
@@ -62,8 +67,7 @@ return htmlString.replace(regex, '');
           </div>
         ))
       }
-      <h2></h2>
-      <p></p>
+      
       <Header/>
     </div>
   )
